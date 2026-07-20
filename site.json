@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "eyebrow": "Sello discográfico · Distribución digital",
+    "title_line1": "Sé parte",
+    "title_line2": "del sueño.",
+    "lead": "Athens Music distribuye y gestiona tu música en más de 150 plataformas digitales. Llevamos tu talento urbano del estudio al mundo."
+  },
+  "about": {
+    "text": "Athens Music construye el escenario donde el talento urbano encuentra alcance global. No solo distribuimos canciones: construimos carreras, con datos claros y estrategia real detrás de cada lanzamiento.",
+    "quote": "\"No sueñes solo. Suena con nosotros.\"",
+    "stats": [
+      { "value": "150+", "label": "Plataformas" },
+      { "value": "24/7", "label": "Soporte a artistas" },
+      { "value": "100%", "label": "Regalías reportadas" }
+    ]
+  },
+  "services": [
+    { "num": "01", "title": "Distribución digital", "text": "Tu música en Spotify, Apple Music, YouTube Music y +150 plataformas en cuestión de días." },
+    { "num": "02", "title": "Gestión de regalías", "text": "Reportes claros y a tiempo de streams, descargas e ingresos. Sin sorpresas, sin letra chica." },
+    { "num": "03", "title": "Manejo de plataformas", "text": "Optimizamos tu perfil, metadata y presencia en cada plataforma para que te encuentren." },
+    { "num": "04", "title": "Estrategia de lanzamiento", "text": "Acompañamiento en cada release: timing, playlisting y promoción digital." },
+    { "num": "05", "title": "Derechos de autor", "text": "Gestionamos el registro y la protección de tus derechos de autor, para que tu creatividad esté respaldada en cada plataforma y territorio." }
+  ],
+  "artists": [
+    { "initial": "A", "name": "Nombre del Artista", "genre": "Reggaetón / Urbano", "bio": "Bio corta del artista, ciudad de origen y enlace a su música." },
+    { "initial": "B", "name": "Nombre del Artista", "genre": "Trap Latino", "bio": "Bio corta del artista, ciudad de origen y enlace a su música." }
+  ],
+  "contact": {
+    "email": "atenasmusicrecords@gmail.com",
+    "quote": "\"El sueño empieza aquí.\""
+  }
+}

@@ -1,0 +1,62 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "es"
+
+collections:
+  - name: "sitio"
+    label: "Contenido del Sitio"
+    files:
+      - file: "content/site.json"
+        label: "Athens Music — Contenido"
+        name: "site"
+        fields:
+          - label: "Sección Principal (Hero)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Etiqueta superior", name: "eyebrow", widget: "string" }
+              - { label: "Título — línea 1", name: "title_line1", widget: "string" }
+              - { label: "Título — línea 2 (resaltada en color)", name: "title_line2", widget: "string" }
+              - { label: "Texto principal", name: "lead", widget: "text" }
+
+          - label: "Sobre Nosotros"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Texto descriptivo", name: "text", widget: "text" }
+              - { label: "Frase destacada", name: "quote", widget: "string" }
+              - label: "Estadísticas"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { label: "Valor (ej. 150+)", name: "value", widget: "string" }
+                  - { label: "Etiqueta", name: "label", widget: "string" }
+
+          - label: "Servicios"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Número", name: "num", widget: "string" }
+              - { label: "Título del servicio", name: "title", widget: "string" }
+              - { label: "Descripción", name: "text", widget: "text" }
+
+          - label: "Catálogo de Artistas"
+            name: "artists"
+            widget: "list"
+            fields:
+              - { label: "Inicial (para el avatar)", name: "initial", widget: "string" }
+              - { label: "Nombre del artista", name: "name", widget: "string" }
+              - { label: "Género musical", name: "genre", widget: "string" }
+              - { label: "Bio corta", name: "bio", widget: "text" }
+
+          - label: "Contacto"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Correo electrónico", name: "email", widget: "string" }
+              - { label: "Frase final", name: "quote", widget: "string" }

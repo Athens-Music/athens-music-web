@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Athens Music — Distribución Digital &amp; Manejo de Plataformas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt: #0a0a0c;
+    --asphalt-2: #131316;
+    --asphalt-3: #1b1b1f;
+    --pink: #ff2f92;
+    --pink-soft: #ff6fb4;
+    --cyan: #00e5ff;
+    --yellow: #f2ff00;
+    --ivory: #eef0f2;
+    --text-dim: #93949c;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--asphalt);
+    color:var(--ivory);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--pink);color:var(--asphalt);}
+
+  h1,h2,h3,.display{
+    font-family:'Bebas Neue', sans-serif;
+    font-weight:400;
+    letter-spacing:0.02em;
+  }
+  .tag-font{font-family:'Permanent Marker', cursive;}
+  .mono{font-family:'JetBrains Mono', monospace; letter-spacing:0.03em;}
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- background texture ---------- */
+  .bg-fx{
+    position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(circle 420px at 12% 8%, rgba(255,47,146,0.16), transparent 65%),
+      radial-gradient(circle 480px at 90% 15%, rgba(0,229,255,0.14), transparent 65%),
+      radial-gradient(circle 500px at 50% 90%, rgba(255,47,146,0.10), transparent 65%),
+      linear-gradient(180deg, #0a0a0c 0%, #0d0d10 50%, #0a0a0c 100%);
+  }
+  .bg-fx::after{
+    content:"";
+    position:absolute; inset:0;
+    opacity:0.05;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.4) 0px, transparent 1px, transparent 3px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.25) 0px, transparent 1px, transparent 4px);
+    mix-blend-mode:overlay;
+  }
+
+  /* hazard stripe divider */
+  .hazard{
+    height:10px;
+    background:repeating-linear-gradient(135deg, var(--yellow) 0 18px, #111 18px 36px);
+    opacity:0.9;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(10,10,12,0.8);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid var(--pink);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:1.7rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ivory);
+    text-shadow:0 0 14px rgba(255,47,146,0.5);
+  }
+  .logo span{color:var(--pink);}
+  .nav-links{display:flex; gap:32px; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; font-weight:600;}
+  .nav-links a{position:relative; padding-bottom:4px; transition:color .25s;}
+  .nav-links a:hover{color:var(--cyan);}
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:2px;
+    background:var(--cyan); box-shadow:0 0 8px var(--cyan); transition:width .3s;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--pink); color:var(--asphalt); font-weight:800;
+    padding:10px 22px; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em;
+    box-shadow:0 0 18px rgba(255,47,146,0.55);
+    transition:transform .2s, box-shadow .2s;
+    transform:skewX(-6deg);
+  }
+  .nav-cta span{display:inline-block; transform:skewX(6deg);}
+  .nav-cta:hover{transform:skewX(-6deg) translateY(-2px); box-shadow:0 0 28px rgba(255,47,146,0.8);}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:100vh; display:flex; flex-direction:column; justify-content:center; position:relative; padding-top:100px;}
+  .hero-inner{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
+
+  .eyebrow{
+    display:flex; align-items:center; gap:12px;
+    font-size:0.75rem; text-transform:uppercase; letter-spacing:0.2em;
+    color:var(--cyan); margin-bottom:20px; font-weight:700;
+  }
+  .eyebrow::before{content:""; width:32px; height:2px; background:var(--cyan); box-shadow:0 0 8px var(--cyan);}
+
+  .hero h1{
+    font-size:clamp(3.2rem, 7vw, 6rem);
+    line-height:0.95;
+    margin-bottom:20px;
+    text-transform:uppercase;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--pink);
+    text-shadow:0 0 20px rgba(255,47,146,0.65), 0 0 44px rgba(255,47,146,0.35);
+  }
+
+  .hero p.lead{font-size:1.15rem; color:#c7c8ce; max-width:480px; margin-bottom:32px;}
+
+  .cta-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 30px; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em;
+    font-weight:800; transition:all .25s; cursor:pointer; border:2px solid transparent;
+  }
+  .btn-neon{
+    background:var(--pink); color:var(--asphalt);
+    box-shadow:0 0 22px rgba(255,47,146,0.55);
+  }
+  .btn-neon:hover{background:var(--pink-soft); transform:translateY(-3px); box-shadow:0 0 32px rgba(255,47,146,0.85);}
+  .btn-outline{border-color:var(--cyan); color:var(--cyan);}
+  .btn-outline:hover{background:var(--cyan); color:var(--asphalt); box-shadow:0 0 22px rgba(0,229,255,0.6);}
+
+  /* ---------- signature visual: neon spray tag burst ---------- */
+  .tag-viz{position:relative; height:420px; display:flex; align-items:center; justify-content:center;}
+  .tag-ring{
+    position:absolute; width:320px; height:320px; border-radius:50%;
+    border:2px dashed rgba(0,229,255,0.35);
+    animation:spin 18s linear infinite;
+  }
+  .tag-ring.small{width:220px; height:220px; border-color:rgba(255,47,146,0.4); animation-duration:12s; animation-direction:reverse;}
+  @keyframes spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+  .tag-center{
+    position:relative; z-index:2; text-align:center;
+  }
+  .tag-center .mic{
+    font-size:5rem;
+    filter:drop-shadow(0 0 18px rgba(255,47,146,0.7)) drop-shadow(0 0 30px rgba(0,229,255,0.4));
+  }
+  .tag-center .tag-word{
+    font-family:'Permanent Marker', cursive;
+    color:var(--yellow);
+    font-size:1.4rem;
+    margin-top:14px;
+    text-shadow:0 0 12px rgba(242,255,0,0.5);
+    transform:rotate(-4deg);
+    display:inline-block;
+  }
+  @media (prefers-reduced-motion: reduce){ .tag-ring{animation:none;} }
+
+  /* ---------- sections ---------- */
+  section{padding:110px 0; position:relative;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{font-size:clamp(2.4rem, 4.5vw, 3.4rem); margin-bottom:18px; text-transform:uppercase;}
+  .section-head p{color:#c7c8ce; font-size:1.05rem;}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+  .about-quote{
+    font-family:'Permanent Marker', cursive;
+    font-size:1.6rem; line-height:1.5; color:var(--cyan);
+    border-left:3px solid var(--pink); padding-left:26px;
+    text-shadow:0 0 10px rgba(0,229,255,0.3);
+    transform:rotate(-1deg);
+  }
+  .stat-row{display:flex; gap:44px; margin-top:36px;}
+  .stat b{display:block; font-family:'Bebas Neue', sans-serif; font-size:2.6rem; color:var(--pink); text-shadow:0 0 14px rgba(255,47,146,0.5);}
+  .stat span{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim);}
+
+  /* ---------- services ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:2px; background:rgba(255,47,146,0.25);}
+  .service-card{background:var(--asphalt-2); padding:42px 36px; transition:background .3s, transform .3s; border-bottom:3px solid transparent;}
+  .service-card:hover{background:var(--asphalt-3); transform:translateY(-4px); border-bottom-color:var(--cyan);}
+  .service-num{font-family:'JetBrains Mono', monospace; color:var(--pink); font-size:0.85rem; margin-bottom:18px; display:block; font-weight:700;}
+  .service-card h3{font-size:1.5rem; margin-bottom:12px; color:var(--ivory); text-transform:uppercase;}
+  .service-card p{color:var(--text-dim); font-size:0.95rem;}
+
+  /* ---------- gallery ---------- */
+  .gallery-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;}
+  .gallery-card{position:relative; aspect-ratio:3/4; overflow:hidden; border:2px solid rgba(0,229,255,0.25);}
+  .gallery-card img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter:grayscale(60%) contrast(1.1) saturate(1.4) hue-rotate(0deg) brightness(0.8);
+    transition:filter .5s ease, transform .6s ease;
+  }
+  .gallery-card:hover img{filter:grayscale(0%) contrast(1.15) saturate(1.5) brightness(0.95); transform:scale(1.07);}
+  .gallery-card::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(10,10,12,0) 40%, rgba(10,10,12,0.92) 100%);
+    z-index:1; pointer-events:none;
+  }
+  .gallery-card::after{
+    content:""; position:absolute; inset:0;
+    box-shadow:inset 0 0 0 2px transparent; transition:box-shadow .3s; z-index:2; pointer-events:none;
+  }
+  .gallery-card:hover::after{box-shadow:inset 0 0 0 2px var(--pink), inset 0 0 24px rgba(255,47,146,0.3);}
+  .gallery-caption{position:absolute; left:18px; right:18px; bottom:16px; z-index:2; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--yellow); font-weight:700;}
+  @media (max-width: 900px){ .gallery-grid{grid-template-columns:repeat(2, 1fr);} }
+  @media (max-width: 560px){ .gallery-grid{grid-template-columns:1fr;} }
+
+  /* ---------- process ---------- */
+  .process{display:grid; grid-template-columns:repeat(4, 1fr); gap:0; position:relative;}
+  .process::before{content:""; position:absolute; top:24px; left:0; right:0; height:2px; background:repeating-linear-gradient(90deg, var(--cyan) 0 10px, transparent 10px 20px); opacity:0.4;}
+  .process-step{text-align:left; padding-right:24px; position:relative;}
+  .process-step .num{
+    width:48px; height:48px; border-radius:50%; border:2px solid var(--pink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--pink);
+    background:var(--asphalt); position:relative; z-index:2; margin-bottom:22px; font-size:0.9rem;
+    box-shadow:0 0 16px rgba(255,47,146,0.4);
+  }
+  .process-step h4{font-family:'Bebas Neue', sans-serif; font-size:1.4rem; font-weight:400; margin-bottom:10px; color:var(--ivory); text-transform:uppercase;}
+  .process-step p{color:var(--text-dim); font-size:0.9rem;}
+
+  /* ---------- artistas ---------- */
+  .artists-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
+  .artist-card{background:var(--asphalt-2); border:2px solid rgba(0,229,255,0.15); padding:30px; transition:border-color .3s, transform .3s;}
+  .artist-card:hover{border-color:var(--cyan); transform:translateY(-4px); box-shadow:0 0 24px rgba(0,229,255,0.15);}
+  .artist-avatar{
+    width:52px; height:52px; border-radius:50%;
+    background:linear-gradient(135deg, var(--pink), var(--cyan));
+    margin-bottom:18px; display:flex; align-items:center; justify-content:center;
+    font-family:'Bebas Neue', sans-serif; color:var(--asphalt); font-size:1.3rem;
+  }
+  .artist-card h4{font-family:'Bebas Neue', sans-serif; font-weight:400; font-size:1.4rem; margin-bottom:6px; text-transform:uppercase;}
+  .artist-card .genre{font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--pink); margin-bottom:12px; display:block; font-weight:700;}
+  .artist-card p{color:var(--text-dim); font-size:0.88rem;}
+  .artist-card.placeholder{display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border-style:dashed; color:var(--text-dim); min-height:210px;}
+  .artist-card.placeholder span{font-size:2rem; color:var(--cyan); margin-bottom:10px;}
+
+  /* ---------- contacto ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px;}
+  .form-group{margin-bottom:20px;}
+  label{display:block; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); margin-bottom:8px; font-weight:600;}
+  input, textarea, select{
+    width:100%; background:var(--asphalt-2); border:none; border-bottom:2px solid rgba(238,240,242,0.15);
+    color:var(--ivory); padding:12px 10px; font-family:'Inter', sans-serif; font-size:1rem; transition:border-color .25s, box-shadow .25s;
+  }
+  input:focus, textarea:focus, select:focus{outline:none; border-color:var(--pink); box-shadow:0 4px 12px -6px rgba(255,47,146,0.6);}
+  select option{background:var(--asphalt-2);}
+  textarea{resize:vertical; min-height:100px;}
+
+  .contact-info{display:flex; flex-direction:column; justify-content:space-between;}
+  .info-block{margin-bottom:32px;}
+  .info-block a, .info-block p{font-size:1.1rem; color:var(--ivory); font-weight:600;}
+  .info-block a:hover{color:var(--cyan);}
+
+  /* ---------- footer ---------- */
+  footer{border-top:2px solid var(--pink); padding:28px 0;}
+  .footer-inner{display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; color:var(--text-dim);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px){
+    .nav-links{display:none;}
+    .hero-inner{grid-template-columns:1fr;}
+    .tag-viz{height:260px; margin-top:30px;}
+    .about-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr;}
+    .process{grid-template-columns:1fr 1fr; gap:30px;}
+    .process::before{display:none;}
+    .artists-grid{grid-template-columns:1fr 1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-inner{flex-direction:column; gap:12px; text-align:center;}
+  }
+  @media (max-width: 560px){
+    .artists-grid{grid-template-columns:1fr;}
+    .process{grid-template-columns:1fr;}
+    nav{padding:14px 20px;}
+    .wrap{padding:0 20px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-fx"></div>
+
+<header>
+  <nav>
+    <div class="logo">ATHENS <span>MUSIC</span></div>
+    <div class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#sello">El Sello</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="nav-cta"><span>Envía tu música</span></a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow mono" id="hero-eyebrow">Sello discográfico · Distribución digital</div>
+        <h1><span id="hero-title-1">Sé parte</span><br>del <em id="hero-title-2">sueño.</em></h1>
+        <p class="lead" id="hero-lead">Athens Music distribuye y gestiona tu música en más de 150 plataformas digitales. Llevamos tu talento urbano del estudio al mundo.</p>
+        <div class="cta-row">
+          <a href="#contacto" class="btn btn-neon">Envía tu música</a>
+          <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+        </div>
+      </div>
+      <div class="tag-viz">
+        <div class="tag-ring"></div>
+        <div class="tag-ring small"></div>
+        <div class="tag-center">
+          <div class="mic">🎤</div>
+          <div class="tag-word">no sueñes solo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- SOBRE EL SELLO -->
+  <section id="sello">
+    <div class="wrap about-grid">
+      <div>
+        <div class="eyebrow">Sobre nosotros</div>
+        <h2>El escenario que tu música necesita</h2>
+        <p style="color:#c7c8ce; margin-top:18px;" id="about-text">Athens Music construye el escenario donde el talento urbano encuentra alcance global. No solo distribuimos canciones: construimos carreras, con datos claros y estrategia real detrás de cada lanzamiento.</p>
+        <div class="stat-row" id="about-stats">
+          <div class="stat"><b>150+</b><span>Plataformas</span></div>
+          <div class="stat"><b>24/7</b><span>Soporte a artistas</span></div>
+          <div class="stat"><b>100%</b><span>Regalías reportadas</span></div>
+        </div>
+      </div>
+      <div class="about-quote" id="about-quote">"No sueñes solo. Suena con nosotros."</div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Qué hacemos</div>
+        <h2>Servicios para artistas urbanos</h2>
+        <p>Todo lo que necesitas para que tu música suene, se reporte y crezca — sin letra pequeña.</p>
+      </div>
+      <div class="services-grid" id="services-grid">
+        <div class="service-card">
+          <span class="service-num mono">01</span>
+          <h3>Distribución digital</h3>
+          <p>Tu música en Spotify, Apple Music, YouTube Music y +150 plataformas en cuestión de días.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num mono">02</span>
+          <h3>Gestión de regalías</h3>
+          <p>Reportes claros y a tiempo de streams, descargas e ingresos. Sin sorpresas, sin letra chica.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num mono">03</span>
+          <h3>Manejo de plataformas</h3>
+          <p>Optimizamos tu perfil, metadata y presencia en cada plataforma para que te encuentren.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num mono">04</span>
+          <h3>Estrategia de lanzamiento</h3>
+          <p>Acompañamiento en cada release: timing, playlisting y promoción digital.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num mono">05</span>
+          <h3>Derechos de autor</h3>
+          <p>Gestionamos el registro y la protección de tus derechos de autor, para que tu creatividad esté respaldada en cada plataforma y territorio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- GALERIA -->
+  <section id="atmosfera">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">La música en cada momento</div>
+        <h2>De la calle al escenario</h2>
+        <p>Así vive la música que distribuimos: en los audífonos, en el estudio, en la calle y en el escenario.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1651336453395-0d0ab99047c7?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Artista cantando en un escenario">
+          <div class="gallery-caption mono">En el escenario</div>
+        </div>
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1759591735835-4c700901344d?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Persona escuchando música con audífonos">
+          <div class="gallery-caption mono">En los audífonos</div>
+        </div>
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1714140674991-f12cf2bb4d4a?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Artista grabando en un estudio de música">
+          <div class="gallery-caption mono">En el estudio</div>
+        </div>
+        <div class="gallery-card">
+          <img src="https://images.unsplash.com/photo-1529518969858-8baa65152fc8?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Persona tocando guitarra en un parque">
+          <div class="gallery-caption mono">En la calle</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- PROCESO -->
+  <section id="proceso">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Cómo empezar</div>
+        <h2>Súmate al catálogo en 4 pasos</h2>
+      </div>
+      <div class="process">
+        <div class="process-step">
+          <div class="num mono">01</div>
+          <h4>Envía tu demo</h4>
+          <p>Comparte tu música y tu visión a través del formulario de contacto.</p>
+        </div>
+        <div class="process-step">
+          <div class="num mono">02</div>
+          <h4>Evaluación</h4>
+          <p>Nuestro equipo escucha y evalúa el fit con el catálogo de Athens Music.</p>
+        </div>
+        <div class="process-step">
+          <div class="num mono">03</div>
+          <h4>Firma y onboarding</h4>
+          <p>Formalizamos el acuerdo y preparamos tu perfil en todas las plataformas.</p>
+        </div>
+        <div class="process-step">
+          <div class="num mono">04</div>
+          <h4>Lanzamiento</h4>
+          <p>Tu música sale al mundo, con estrategia y reportes desde el primer día.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- CATALOGO -->
+  <section id="catalogo">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Nuestro catálogo</div>
+        <h2>Artistas Athens Music</h2>
+        <p>Espacio para tu catálogo real de artistas — reemplaza estas tarjetas con tus talentos firmados.</p>
+      </div>
+      <div class="artists-grid" id="artists-grid">
+        <div class="artist-card">
+          <div class="artist-avatar">A</div>
+          <h4>Nombre del Artista</h4>
+          <span class="genre">Reggaetón / Urbano</span>
+          <p>Bio corta del artista, ciudad de origen y enlace a su música.</p>
+        </div>
+        <div class="artist-card">
+          <div class="artist-avatar">B</div>
+          <h4>Nombre del Artista</h4>
+          <span class="genre">Trap Latino</span>
+          <p>Bio corta del artista, ciudad de origen y enlace a su música.</p>
+        </div>
+      </div>
+      <div class="artists-grid" style="margin-top:24px;">
+        <div class="artist-card placeholder">
+          <span>+</span>
+          <p>Tu próximo artista firmado</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:32px;">
+          <div class="eyebrow">Contacto</div>
+          <h2>Envía tu música hoy</h2>
+        </div>
+        <form name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias.html">
+          <input type="hidden" name="form-name" value="contacto">
+          <p style="display:none;">
+            <label>No llenar si eres humano: <input name="bot-field"></label>
+          </p>
+          <div class="form-group">
+            <label>Nombre artístico</label>
+            <input type="text" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label>Género musical</label>
+            <select name="genero">
+              <option>Reggaetón</option>
+              <option>Trap Latino</option>
+              <option>Urbano</option>
+              <option>Pop</option>
+              <option>Rock</option>
+              <option>Reggae</option>
+              <option>Afrobeats</option>
+              <option>Hip Hop</option>
+              <option>Cristiano</option>
+              <option>House</option>
+              <option>Bachata</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Enlace a tu música (Spotify, YouTube, SoundCloud...)</label>
+            <input type="url" name="enlace" placeholder="https://">
+          </div>
+          <div class="form-group">
+            <label>Cuéntanos sobre ti</label>
+            <textarea name="mensaje"></textarea>
+          </div>
+          <button type="submit" class="btn btn-neon" style="border:none;cursor:pointer;">Enviar</button>
+        </form>
+      </div>
+      <div class="contact-info">
+        <div class="info-block">
+          <div class="eyebrow">Escríbenos</div>
+          <a href="mailto:atenasmusicrecords@gmail.com" id="contact-email">atenasmusicrecords@gmail.com</a>
+        </div>
+        <div class="about-quote" style="font-size:1.2rem;" id="contact-quote">"El sueño empieza aquí."</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>© 2026 Athens Music. Todos los derechos reservados.</div>
+    <div class="mono">DISTRIBUCIÓN · PLATAFORMAS · REGALÍAS · <a href="/admin/" style="color:var(--cyan);">Admin</a></div>
+  </div>
+</footer>
+
+<!-- Login de administrador (Netlify Identity) -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+
+<!-- Carga el contenido editable desde content/site.json -->
+<script>
+  fetch('content/site.json')
+    .then(res => res.json())
+    .then(data => {
+      // Hero
+      if (data.hero) {
+        document.getElementById('hero-eyebrow').textContent = data.hero.eyebrow;
+        document.getElementById('hero-title-1').textContent = data.hero.title_line1;
+        document.getElementById('hero-title-2').textContent = data.hero.title_line2;
+        document.getElementById('hero-lead').textContent = data.hero.lead;
+      }
+      // Sobre nosotros
+      if (data.about) {
+        document.getElementById('about-text').textContent = data.about.text;
+        document.getElementById('about-quote').textContent = data.about.quote;
+        const statsEl = document.getElementById('about-stats');
+        if (data.about.stats && statsEl) {
+          statsEl.innerHTML = data.about.stats.map(s =>
+            `<div class="stat"><b>${s.value}</b><span>${s.label}</span></div>`
+          ).join('');
+        }
+      }
+      // Servicios
+      const servicesEl = document.getElementById('services-grid');
+      if (data.services && servicesEl) {
+        servicesEl.innerHTML = data.services.map(s => `
+          <div class="service-card">
+            <span class="service-num mono">${s.num}</span>
+            <h3>${s.title}</h3>
+            <p>${s.text}</p>
+          </div>
+        `).join('');
+      }
+      // Artistas
+      const artistsEl = document.getElementById('artists-grid');
+      if (data.artists && artistsEl) {
+        artistsEl.innerHTML = data.artists.map(a => `
+          <div class="artist-card">
+            <div class="artist-avatar">${a.initial}</div>
+            <h4>${a.name}</h4>
+            <span class="genre">${a.genre}</span>
+            <p>${a.bio}</p>
+          </div>
+        `).join('');
+      }
+      // Contacto
+      if (data.contact) {
+        const emailEl = document.getElementById('contact-email');
+        if (emailEl) {
+          emailEl.textContent = data.contact.email;
+          emailEl.href = 'mailto:' + data.contact.email;
+        }
+        document.getElementById('contact-quote').textContent = data.contact.quote;
+      }
+    })
+    .catch(err => console.error('No se pudo cargar content/site.json', err));
+</script>
+
+</body>
+</html>
