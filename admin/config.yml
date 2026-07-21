@@ -49,7 +49,8 @@ collections:
             name: "artists"
             widget: "list"
             fields:
-              - { label: "Inicial (para el avatar)", name: "initial", widget: "string" }
+              - { label: "Foto de perfil (opcional)", name: "photo", widget: "image", required: false, hint: "Si no subes foto, se mostrará la inicial." }
+              - { label: "Inicial (para el avatar, si no hay foto)", name: "initial", widget: "string", required: false }
               - { label: "Nombre del artista", name: "name", widget: "string" }
               - { label: "Género musical", name: "genre", widget: "string" }
               - { label: "Bio corta", name: "bio", widget: "text" }
