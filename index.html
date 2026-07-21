@@ -244,10 +244,15 @@
   .artist-card{background:var(--asphalt-2); border:2px solid rgba(0,229,255,0.15); padding:30px; transition:border-color .3s, transform .3s;}
   .artist-card:hover{border-color:var(--cyan); transform:translateY(-4px); box-shadow:0 0 24px rgba(0,229,255,0.15);}
   .artist-avatar{
-    width:52px; height:52px; border-radius:50%;
+    width:64px; height:64px; border-radius:50%;
     background:linear-gradient(135deg, var(--pink), var(--cyan));
     margin-bottom:18px; display:flex; align-items:center; justify-content:center;
-    font-family:'Bebas Neue', sans-serif; color:var(--asphalt); font-size:1.3rem;
+    font-family:'Bebas Neue', sans-serif; color:var(--asphalt); font-size:1.5rem;
+    overflow:hidden;
+    border:2px solid rgba(0,229,255,0.3);
+  }
+  .artist-avatar img{
+    width:100%; height:100%; object-fit:cover; display:block;
   }
   .artist-card h4{font-family:'Bebas Neue', sans-serif; font-weight:400; font-size:1.4rem; margin-bottom:6px; text-transform:uppercase;}
   .artist-card .genre{font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--pink); margin-bottom:12px; display:block; font-weight:700;}
@@ -620,7 +625,7 @@
       if (data.artists && artistsEl) {
         artistsEl.innerHTML = data.artists.map(a => `
           <div class="artist-card">
-            <div class="artist-avatar">${a.initial}</div>
+            <div class="artist-avatar">${a.photo ? `<img src="${a.photo}" alt="${a.name}">` : (a.initial || '')}</div>
             <h4>${a.name}</h4>
             <span class="genre">${a.genre}</span>
             <p>${a.bio}</p>
