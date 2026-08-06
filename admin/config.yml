@@ -58,9 +58,5 @@ collections:
               - { label: "Bio corta", name: "bio", widget: "text" }
               - { label: "Enlace al perfil (Spotify, Instagram, etc.)", name: "profile_link", widget: "string", required: false, hint: "Si lo llenas, toda la tarjeta será clickeable y abrirá este link." }
 
-          - label: "Contacto"
-            name: "contact"
-            widget: "object"
-            fields:
-              - { label: "Correo electrónico", name: "email", widget: "string" }
-              - { label: "Frase final", name: "quote", widget: "string" }
+          - label: "Artista del Mes"
+            name: "artist_of_month"
