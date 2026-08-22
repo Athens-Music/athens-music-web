@@ -85,10 +85,17 @@
     "photo": "/images/uploads/bn2.jpg",
     "role": "Reggaetón / Pop Urbano Latino",
     "press_note": "Hendry D'Ti cierra julio con cifras destacadas y anuncia el estreno de \"Cerveza Tequila y Ron\"\n\nJulio fue un mes de gran crecimiento para Hendry D'Ti, quien consolidó su presencia en las plataformas digitales con mas de 30mil reproducciones/streams durante el mes, reflejo del creciente respaldo de su público.\n\nDentro de su catálogo, el tema \"Déjala\" se posicionó como la canción más escuchada del mes, acumulando cerca de 12mil reproducciones y confirmando su lugar como uno de los favoritos entre sus seguidores.\n\nComo broche de oro para este período, el artista anunció el estreno de su nuevo sencillo \"Cerveza Tequila y Ron\", disponible desde el 31 de julio en todas las plataformas digitales. Con este lanzamiento, Hendry D'Ti reafirma su compromiso de seguir complaciendo a sus fans con nueva música.\n\nCon estos resultados, el artista continúa fortaleciendo su carrera y proyectándose como una de las propuestas a seguir de cerca en los próximos meses.",
-    "song_name": "Déjala",
+    "song_name": "Déjala - Hendry D`Ti",
     "song_link": "https://open.spotify.com/intl-es/track/5uplUugFsaG6jNOsJsla8Y?si=a938e779016749fc"
   },
   "featured_release": {
     "spotify_embed_url": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"https://open.spotify.com/embed/track/5TMwJJsLFcEeTEpFCV6DdV?utm_source=generator&si=dcb7f9d44e7543da\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
-  }
+  },
+  "testimonials": [
+    {
+      "quote": "\"Desde que empecé a trabajar con Athens Music sentí el respaldo real de un equipo que cree en mi música. Aquí sí me sentí escuchado desde el día uno — no soy un número más, soy parte de la familia. Me dieron las herramientas pa' que mi música llegue donde tiene que llegar, la confianza para llevar mi carrera al siguiente nivel, y eso no tiene precio. Agradecido con todo el equipo por creer en mi sueño.\"",
+      "author": "Hendry D'Ti",
+      "role": "Reguetón / Pop Urbano Latino · Matanzas, Cuba"
+    }
+  ]
 }
