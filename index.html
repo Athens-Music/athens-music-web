@@ -260,6 +260,67 @@
   .artist-card.placeholder{display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border-style:dashed; color:var(--text-dim); min-height:210px;}
   .artist-card.placeholder span{font-size:2rem; color:var(--cyan); margin-bottom:10px;}
 
+  /* ---------- artista del mes ---------- */
+  .spotlight-section{display:none;}
+  .spotlight-card{
+    background:var(--asphalt-2);
+    border:2px solid var(--pink);
+    box-shadow:0 0 40px rgba(255,47,146,0.18);
+    padding:48px;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:48px;
+    align-items:center;
+    position:relative;
+  }
+  .spotlight-badge{
+    position:absolute; top:-16px; left:48px;
+    background:var(--yellow); color:var(--asphalt);
+    font-family:'Permanent Marker', cursive;
+    font-size:0.95rem; padding:6px 18px;
+    transform:rotate(-3deg);
+    box-shadow:0 0 16px rgba(242,255,0,0.4);
+  }
+  .spotlight-photo{
+    width:220px; height:220px; border-radius:50%;
+    border:3px solid var(--cyan);
+    overflow:hidden;
+    background:linear-gradient(135deg, var(--pink), var(--cyan));
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 28px rgba(0,229,255,0.35);
+  }
+  .spotlight-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .spotlight-month{color:var(--cyan); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.15em; font-weight:700; margin-bottom:10px;}
+  .spotlight-name{font-size:clamp(2rem, 4vw, 3rem); text-transform:uppercase; line-height:1;}
+  .spotlight-role{color:var(--pink); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin:10px 0 20px;}
+  .spotlight-press{color:#c7c8ce; font-size:0.98rem; margin-bottom:22px;}
+  .spotlight-song{
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    background:var(--asphalt-3); border-left:3px solid var(--yellow);
+    padding:14px 18px; margin-bottom:22px;
+  }
+  .spotlight-song .label{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); display:block;}
+  .spotlight-song .name{font-family:'Bebas Neue', sans-serif; font-size:1.2rem; color:var(--ivory);}
+  .spotlight-embed{margin-top:8px; border-radius:4px; overflow:hidden;}
+  .spotlight-embed iframe{width:100%; border:none; display:block;}
+  @media (max-width: 700px){
+    .spotlight-card{grid-template-columns:1fr; text-align:center; padding:36px 28px;}
+    .spotlight-photo{margin:0 auto;}
+    .spotlight-badge{left:50%; transform:translateX(-50%) rotate(-3deg);}
+    .spotlight-song{justify-content:center;}
+  }
+
+  /* ---------- testimonios ---------- */
+  .testimonials-section{display:none;}
+  .testimonials-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px;}
+  .testimonial-card{
+    background:var(--asphalt-2); border-left:3px solid var(--cyan);
+    padding:30px; position:relative;
+  }
+  .testimonial-quote{color:#c7c8ce; font-size:1rem; margin-bottom:18px; font-style:italic;}
+  .testimonial-author{font-family:'Bebas Neue', sans-serif; font-size:1.2rem; color:var(--ivory); text-transform:uppercase;}
+  .testimonial-role{font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--pink); font-weight:700; margin-top:2px;}
+
   /* ---------- contacto ---------- */
   .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px;}
   .form-group{margin-bottom:20px;}
@@ -340,6 +401,34 @@
         <div class="tag-center">
           <div class="mic">🎤</div>
           <div class="tag-word">no sueñes solo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
+  <!-- ARTISTA DEL MES -->
+  <section id="artista-del-mes" class="spotlight-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Destacado</div>
+        <h2>Artista del Mes</h2>
+      </div>
+      <div class="spotlight-card">
+        <div class="spotlight-badge" id="spotlight-month">Mes</div>
+        <div class="spotlight-photo" id="spotlight-photo"></div>
+        <div>
+          <h3 class="spotlight-name" id="spotlight-name"></h3>
+          <div class="spotlight-role" id="spotlight-role"></div>
+          <p class="spotlight-press" id="spotlight-press"></p>
+          <div class="spotlight-song" id="spotlight-song" style="display:none;">
+            <div>
+              <span class="label">Canción más escuchada</span>
+              <a class="name" id="spotlight-song-name" target="_blank" rel="noopener"></a>
+            </div>
+          </div>
+          <div class="spotlight-embed" id="spotlight-embed"></div>
         </div>
       </div>
     </div>
@@ -504,6 +593,19 @@
 
   <div class="hazard"></div>
 
+  <!-- TESTIMONIOS -->
+  <section id="testimonios" class="testimonials-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Lo que dicen</div>
+        <h2>Testimonios de artistas</h2>
+      </div>
+      <div class="testimonials-grid" id="testimonials-grid"></div>
+    </div>
+  </section>
+
+  <div class="hazard"></div>
+
   <!-- CONTACTO -->
   <section id="contacto">
     <div class="wrap contact-grid">
@@ -631,6 +733,50 @@
             <p>${a.bio}</p>
           </div>
         `).join('');
+      }
+      // Artista del Mes
+      const spotlightSection = document.getElementById('artista-del-mes');
+      if (data.artist_of_month && data.artist_of_month.name && spotlightSection) {
+        const am = data.artist_of_month;
+        spotlightSection.style.display = 'block';
+        document.getElementById('spotlight-month').textContent = am.month_label || 'Artista del mes';
+        document.getElementById('spotlight-name').textContent = am.name || '';
+        document.getElementById('spotlight-role').textContent = am.role || '';
+        document.getElementById('spotlight-press').textContent = am.press_note || '';
+        const photoEl = document.getElementById('spotlight-photo');
+        photoEl.innerHTML = am.photo ? `<img src="${am.photo}" alt="${am.name}">` : '';
+        const songBox = document.getElementById('spotlight-song');
+        if (am.song_name) {
+          songBox.style.display = 'flex';
+          const songLink = document.getElementById('spotlight-song-name');
+          songLink.textContent = am.song_name;
+          if (am.song_link) { songLink.href = am.song_link; } else { songLink.removeAttribute('href'); }
+        } else {
+          songBox.style.display = 'none';
+        }
+        const embedBox = document.getElementById('spotlight-embed');
+        if (data.featured_release && data.featured_release.spotify_embed_url) {
+          embedBox.innerHTML = `<iframe src="${data.featured_release.spotify_embed_url}" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+        } else {
+          embedBox.innerHTML = '';
+        }
+      } else if (spotlightSection) {
+        spotlightSection.style.display = 'none';
+      }
+      // Testimonios
+      const testimonialsSection = document.getElementById('testimonios');
+      const testimonialsGrid = document.getElementById('testimonials-grid');
+      if (data.testimonials && data.testimonials.length && testimonialsSection && testimonialsGrid) {
+        testimonialsSection.style.display = 'block';
+        testimonialsGrid.innerHTML = data.testimonials.map(t => `
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"${t.quote}"</p>
+            <div class="testimonial-author">${t.author || ''}</div>
+            ${t.role ? `<div class="testimonial-role">${t.role}</div>` : ''}
+          </div>
+        `).join('');
+      } else if (testimonialsSection) {
+        testimonialsSection.style.display = 'none';
       }
       // Contacto
       if (data.contact) {
