@@ -60,3 +60,36 @@ collections:
 
           - label: "Artista del Mes"
             name: "artist_of_month"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "Mes (ej. Agosto 2026)", name: "month_label", widget: "string", required: false }
+              - { label: "Foto del artista", name: "photo", widget: "image", required: false }
+              - { label: "Nombre del artista", name: "name", widget: "string", required: false }
+              - { label: "Género / Ciudad", name: "role", widget: "string", required: false }
+              - { label: "Nota de prensa (logros del mes)", name: "press_note", widget: "text", required: false, hint: "Ej: streams alcanzados, hitos, menciones, lo que viene." }
+              - { label: "Nombre de la canción más escuchada", name: "song_name", widget: "string", required: false }
+              - { label: "Link directo para escucharla", name: "song_link", widget: "string", required: false, hint: "Link de Spotify, YouTube, etc." }
+
+          - label: "Reproductor Destacado (Spotify)"
+            name: "featured_release"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "URL de embed de Spotify", name: "spotify_embed_url", widget: "string", required: false, hint: "En Spotify: clic derecho en la canción/álbum → Compartir → Insertar canción → copia solo el link que está dentro de src=\"...\" del código." }
+
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Cita del artista", name: "quote", widget: "text" }
+              - { label: "Nombre del artista", name: "author", widget: "string" }
+              - { label: "Género / Ciudad", name: "role", widget: "string", required: false }
+
+          - label: "Contacto"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Correo electrónico", name: "email", widget: "string" }
+              - { label: "Frase final", name: "quote", widget: "string" }
